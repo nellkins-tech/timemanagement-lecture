@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мини-лекция: Как совмещать работу, учебу и личную жизнь</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --light-blue: #95B1EE;
+    --base-white: #FFFDF5;
+    --light-green: #E7F1A8;
+    --dark-blue: #364C84;
+    --text-dark: #2D3748;
+    --text-light: #718096;
+    --shadow: rgba(54, 76, 132, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--base-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  /* === HERO === */
+  .hero {
+    background: linear-gradient(135deg, var(--base-white) 0%, #f0f4ff 100%);
+    padding: 80px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: var(--light-green);
+    border-radius: 50%;
+    opacity: 0.4;
+    filter: blur(40px);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--light-blue);
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(40px);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--light-green);
+    color: var(--dark-blue);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    color: var(--dark-blue);
+    line-height: 1.15;
+    max-width: 700px;
+    margin: 0 auto 16px;
+    position: relative; z-index: 1;
+  }
+
+  .hero p {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--text-light);
+    max-width: 560px;
+    margin: 0 auto 32px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dark-blue);
+    color: white;
+    border: none;
+    padding: 16px 36px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative; z-index: 1;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(54, 76, 132, 0.25);
+  }
+
+  /* === SECTIONS === */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    color: var(--dark-blue);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-light);
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+
+  /* === THESIS CARDS === */
+  .thesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .thesis-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .thesis-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(54, 76, 132, 0.12);
+  }
+
+  .thesis-card:nth-child(1) { border-color: var(--light-blue); }
+  .thesis-card:nth-child(2) { border-color: var(--light-green); }
+  .thesis-card:nth-child(3) { border-color: var(--dark-blue); }
+  .thesis-card:nth-child(4) { border-color: #F4A261; }
+
+  .thesis-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .thesis-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+  }
+
+  .thesis-card p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* === ACTIVITY SECTIONS === */
+  .activity-section {
+    background: white;
+    border-radius: 24px;
+    margin: 40px auto;
+    max-width: 900px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 24px var(--shadow);
+  }
+
+  .activity-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .activity-header h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+  }
+
+  .activity-header p {
+    font-size: 15px;
+    color: var(--text-light);
+  }
+
+  /* === QUOTE BLOCK === */
+  .quote-block {
+    background: linear-gradient(135deg, var(--light-green) 0%, #d4e8a0 100%);
+    border-radius: 24px;
+    padding: 48px 32px;
+    text-align: center;
+    max-width: 800px;
+    margin: 60px auto;
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '"';
+    font-size: 80px;
+    color: var(--dark-blue);
+    opacity: 0.15;
+    position: absolute;
+    top: 10px; left: 24px;
+    line-height: 1;
+  }
+
+  .quote-block p {
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+
+  .quote-block .author {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 16px;
+    font-weight: 500;
+  }
+
+  /* === FOOTER CTA === */
+  .footer-cta {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, var(--dark-blue) 0%, #2a3d6b 100%);
+    color: white;
+  }
+
+  .footer-cta h2 {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .footer-cta p {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 500px;
+    margin: 0 auto 28px;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    color: var(--dark-blue);
+    border: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  /* === SCROLL NAV === */
+  .nav-dots {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--light-blue);
+    opacity: 0.4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .nav-dot.active {
+    opacity: 1;
+    background: var(--dark-blue);
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 640px) {
+    .nav-dots { display: none; }
+    .hero { padding: 60px 16px 40px; }
+    .section { padding: 40px 16px; }
+    .activity-section { padding: 28px 12px; margin: 24px 12px; }
+    .quote-block { padding: 32px 20px; margin: 40px 16px; }
+  }
+
+  /* ============================================================
+     WIDGET 1: TIME PLANNER TEST (prefixed with t1-)
+     ============================================================ */
+  .t1-test {
+    width: 100%;
+    max-width: 640px;
+    background: var(--base-white);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px var(--shadow);
+    overflow: hidden;
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .t1-test-header-decoration {
+    height: 6px;
+    background: linear-gradient(90deg, var(--light-blue) 0%, var(--light-green) 50%, var(--dark-blue) 100%);
+    flex-shrink: 0;
+  }
+
+  .t1-test-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .t1-test-screen {
+    display: none;
+    padding: 40px;
+    animation: t1-fadeIn 0.4s ease;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .t1-test-screen.t1-active {
+    display: flex;
+  }
+
+  @keyframes t1-fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .t1-start-screen {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .t1-start-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--light-blue), var(--light-green));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  .t1-start-screen h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .t1-start-screen .t1-subtitle {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 380px;
+  }
+
+  .t1-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--dark-blue);
+    color: white;
+    border: none;
+    padding: 14px 36px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    flex-shrink: 0;
+  }
+
+  .t1-btn-primary:hover {
+    background: #2a3d6b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(54, 76, 132, 0.25);
+  }
+
+  .t1-question-screen {
+    padding: 32px 40px;
+  }
+
+  .t1-question-header {
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+
+  .t1-progress-bar {
+    height: 6px;
+    background: #E2E8F0;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .t1-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--light-blue), var(--light-green));
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  .t1-progress-text {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .t1-question-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 1.4;
+  }
+
+  .t1-answers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  .t1-answers-list::-webkit-scrollbar { width: 4px; }
+  .t1-answers-list::-webkit-scrollbar-thumb { background: var(--light-blue); border-radius: 2px; }
+
+  .t1-answer-option {
+    background: white;
+    border: 2px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-dark);
+    text-align: left;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .t1-answer-option::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--light-blue);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .t1-answer-option:hover {
+    border-color: var(--light-blue);
+    background: #FAFBFF;
+    transform: translateX(3px);
+  }
+
+  .t1-answer-option:hover::before { opacity: 1; }
+
+  .t1-answer-option.t1-selected {
+    border-color: var(--dark-blue);
+    background: linear-gradient(135deg, rgba(149, 177, 238, 0.08), rgba(231, 241, 168, 0.08));
+    box-shadow: 0 4px 16px rgba(54, 76, 132, 0.08);
+  }
+
+  .t1-answer-option.t1-selected::before {
+    opacity: 1;
+    background: var(--dark-blue);
+  }
+
+  .t1-check-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 22px;
+    height: 22px;
+    background: var(--dark-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .t1-answer-option.t1-selected .t1-check-icon {
+    transform: translateY(-50%) scale(1);
+  }
+
+  .t1-next-btn {
+    margin-top: 16px;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .t1-next-btn.t1-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .t1-result-screen {
+    padding: 32px 40px;
+    text-align: center;
+  }
+
+  .t1-result-header {
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .t1-result-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--light-blue), var(--light-green));
+    color: var(--dark-blue);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .t1-result-type {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--dark-blue);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .t1-result-description {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .t1-carousel-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+
+  .t1-carousel-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+  }
+
+  .t1-carousel-card {
+    min-width: 100%;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .t1-result-card-inner {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    box-shadow: 0 4px 20px rgba(54, 76, 132, 0.06);
+  }
+
+  .t1-result-card-inner.t1-strengths-card { border-color: var(--light-green); }
+  .t1-result-card-inner.t1-blockers-card { border-color: var(--light-blue); }
+  .t1-result-card-inner.t1-tips-card { border-color: var(--dark-blue); }
+
+  .t1-card-emoji {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .t1-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 16px;
+  }
+
+  .t1-card-list {
+    list-style: none;
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.9;
+  }
+
+  .t1-card-list li {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .t1-card-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+
+  .t1-strengths-card .t1-card-list li::before { color: #8BC34A; }
+  .t1-blockers-card .t1-card-list li::before { color: var(--light-blue); }
+  .t1-tips-card .t1-card-list li::before { color: var(--dark-blue); }
+
+  .t1-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-shrink: 0;
+    margin-bottom: 16px;
+  }
+
+  .t1-carousel-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .t1-carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #E2E8F0;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+
+  .t1-carousel-dot.t1-active {
+    background: var(--dark-blue);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .t1-carousel-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #E2E8F0;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: var(--dark-blue);
+    padding: 0;
+  }
+
+  .t1-carousel-arrow:hover {
+    border-color: var(--light-blue);
+    background: #FAFBFF;
+    transform: scale(1.1);
+  }
+
+  .t1-carousel-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .t1-carousel-arrow svg { width: 16px; height: 16px; }
+
+  .t1-restart-btn {
+    background: transparent;
+    color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    flex-shrink: 0;
+  }
+
+  .t1-restart-btn:hover {
+    background: var(--dark-blue);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    .t1-test { min-height: 480px; }
+    .t1-test-screen { padding: 24px; }
+    .t1-question-screen, .t1-result-screen { padding: 24px; }
+    .t1-start-screen h1 { font-size: 22px; }
+    .t1-question-text { font-size: 18px; }
+    .t1-result-type { font-size: 24px; }
+    .t1-result-card-inner { padding: 20px; }
+    .t1-card-title { font-size: 16px; }
+    .t1-card-list { font-size: 14px; }
+  }
+
+  /* ============================================================
+     WIDGET 2: FOCUS WIDGET (prefixed with t2-)
+     ============================================================ */
+  .t2-widget {
+    width: 100%;
+    max-width: 560px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(54, 76, 132, 0.08);
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .t2-widget-header {
+    background: var(--light-blue);
+    padding: 32px 28px 24px;
+    text-align: center;
+  }
+
+  .t2-widget-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 1.3;
+  }
+
+  .t2-widget-header p {
+    font-size: 14px;
+    color: var(--dark-blue);
+    opacity: 0.8;
+    margin-top: 6px;
+  }
+
+  .t2-widget-body {
+    display: grid;
+    grid-template-areas: "step";
+    padding: 0;
+  }
+
+  .t2-step {
+    grid-area: step;
+    padding: 28px;
+    width: 100%;
+    transition: opacity 300ms ease, transform 300ms ease, visibility 300ms ease;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    position: relative;
+    z-index: 0;
+  }
+
+  .t2-step.t2-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    z-index: 1;
+  }
+
+  .t2-pills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .t2-pills { grid-template-columns: 1fr; }
+  }
+
+  .t2-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    background: var(--base-white);
+    cursor: pointer;
+    transition: all 200ms ease;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+    user-select: none;
+    position: relative;
+  }
+
+  .t2-pill:hover {
+    border-color: var(--light-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(54, 76, 132, 0.14);
+  }
+
+  .t2-pill .t2-icon { font-size: 20px; line-height: 1; }
+
+  .t2-pill .t2-check {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 22px;
+    height: 22px;
+    background: var(--dark-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .t2-pill .t2-check svg {
+    width: 12px;
+    height: 12px;
+    stroke: #fff;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .t2-pill.t2-selected {
+    background: var(--light-green);
+    border-color: var(--dark-blue);
+    color: var(--dark-blue);
+  }
+
+  .t2-pill.t2-selected .t2-check {
+    transform: translateY(-50%) scale(1);
+  }
+
+  .t2-pill.t2-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .t2-pill.t2-disabled:hover {
+    border-color: transparent;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .t2-counter-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(149, 177, 238, 0.25);
+  }
+
+  .t2-counter {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+  }
+
+  .t2-counter .t2-num { color: var(--dark-blue); }
+
+  .t2-reset-link {
+    font-size: 13px;
+    color: var(--text-light);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 150ms ease;
+  }
+
+  .t2-reset-link:hover { color: var(--dark-blue); }
+
+  .t2-btn-primary {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px 24px;
+    border-radius: 50px;
+    border: none;
+    background: var(--dark-blue);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 200ms ease;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .t2-btn-primary.t2-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .t2-btn-primary.t2-active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(54, 76, 132, 0.14);
+  }
+
+  .t2-result-card {
+    background: var(--base-white);
+    border-radius: 20px;
+    padding: 28px;
+    border: 2px solid var(--light-blue);
+  }
+
+  .t2-result-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dark-blue);
+    background: var(--light-green);
+    padding: 6px 12px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+  }
+
+  .t2-result-phrase {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--dark-blue);
+    margin-bottom: 20px;
+  }
+
+  .t2-result-question {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-dark);
+    padding: 18px;
+    background: #fff;
+    border-radius: 14px;
+    border-left: 4px solid var(--light-blue);
+    margin-bottom: 20px;
+  }
+
+  .t2-result-thesis {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--dark-blue);
+    text-align: center;
+    padding: 16px;
+    background: var(--light-green);
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
+
+  .t2-btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 50px;
+    border: 2px solid var(--dark-blue);
+    background: transparent;
+    color: var(--dark-blue);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 200ms ease;
+  }
+
+  .t2-btn-secondary:hover {
+    background: var(--dark-blue);
+    color: #fff;
+  }
+
+  .t2-selected-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .t2-selected-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 50px;
+    background: var(--light-blue);
+    color: var(--dark-blue);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* ============================================================
+     WIDGET 3: TIME BLOCKING GAME (prefixed with t3-)
+     ============================================================ */
+  .t3-app-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .t3-screen {
+    display: none;
+    width: 100%;
+    min-height: 500px;
+    overflow: hidden;
+    animation: t3-fadeIn 0.4s ease;
+  }
+  .t3-screen.t3-game-screen {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .t3-screen.t3-active {
+    display: flex;
+    flex-direction: column;
+  }
+  .t3-screen.t3-centered {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  @keyframes t3-fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .t3-schedule-screen {
+    padding: 20px;
+  }
+  .t3-schedule-screen h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+  }
+  .t3-schedule-screen p {
+    font-size: 0.95rem;
+    color: var(--dark-blue);
+    opacity: 0.8;
+    margin-bottom: 28px;
+  }
+  .t3-schedule-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .t3-btn-schedule {
+    background: var(--light-blue);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 10px rgba(149,177,238,0.3);
+    min-width: 160px;
+  }
+  .t3-btn-schedule:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(149,177,238,0.4);
+  }
+
+  .t3-intro-screen {
+    padding: 20px;
+  }
+  .t3-intro-screen .t3-intro-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--dark-blue);
+    margin-bottom: 24px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(54,76,132,0.08);
+    max-width: 480px;
+  }
+  .t3-btn-primary {
+    background: var(--dark-blue);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 36px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 10px rgba(54,76,132,0.25);
+  }
+  .t3-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(54,76,132,0.35);
+  }
+
+  .t3-game-screen {
+    padding: 8px 12px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+  }
+  .t3-game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .t3-game-header h2 {
+    font-size: 1rem;
+    color: var(--dark-blue);
+  }
+  .t3-btn-check {
+    background: var(--dark-blue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .t3-btn-check:hover { background: #2a3c6a; }
+
+  .t3-calendar-outer {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .t3-calendar-header {
+    display: flex;
+    border-bottom: 1px solid #dadce0;
+  }
+  .t3-time-header {
+    width: 42px;
+    flex-shrink: 0;
+    border-right: 1px solid #dadce0;
+  }
+  .t3-day-headers {
+    display: flex;
+    flex: 1;
+  }
+  .t3-day-header {
+    flex: 1;
+    text-align: center;
+    padding: 6px 2px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--dark-blue);
+    border-right: 1px solid #dadce0;
+  }
+  .t3-day-header:last-child { border-right: none; }
+
+  .t3-calendar-body {
+    display: flex;
+    position: relative;
+  }
+  .t3-time-scale {
+    width: 42px;
+    flex-shrink: 0;
+    border-right: 1px solid #dadce0;
+    background: #fafafa;
+  }
+  .t3-time-cell {
+    height: 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-right: 4px;
+    padding-top: 2px;
+    font-size: 0.6rem;
+    color: #70757a;
+    font-weight: 600;
+    border-bottom: 1px solid #dadce0;
+    box-sizing: border-box;
+  }
+  .t3-time-cell:last-child { border-bottom: none; }
+
+  .t3-days-grid {
+    display: flex;
+    flex: 1;
+    position: relative;
+  }
+  .t3-day-column {
+    flex: 1;
+    border-right: 1px solid #dadce0;
+    position: relative;
+    min-width: 0;
+  }
+  .t3-day-column:last-child { border-right: none; }
+
+  .t3-slots-container { position: relative; }
+  .t3-slot {
+    height: 40px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    transition: background 0.15s;
+  }
+  .t3-slot.t3-hour-boundary {
+    border-bottom-color: #dadce0;
+  }
+  .t3-slot.t3-drag-over {
+    background: rgba(149,177,238,0.12);
+  }
+  .t3-slot.t3-error {
+    background: rgba(231,76,60,0.06) !important;
+  }
+  .t3-slot.t3-error .t3-slot-bg {
+    border: 1px solid #E74C3C;
+    background: rgba(231,76,60,0.08);
+  }
+  .t3-slot.t3-success {
+    background: rgba(39,174,96,0.06) !important;
+  }
+  .t3-slot.t3-success .t3-slot-bg {
+    border: 1px solid #27AE60;
+    background: rgba(39,174,96,0.08);
+  }
+  .t3-slot-bg {
+    position: absolute;
+    inset: 1px;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  .t3-error-msg {
+    position: absolute;
+    bottom: 1px;
+    left: 2px;
+    right: 2px;
+    font-size: 0.55rem;
+    color: #C0392B;
+    text-align: center;
+    line-height: 1.1;
+    background: rgba(255,255,255,0.95);
+    border-radius: 2px;
+    padding: 1px 2px;
+    display: none;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .t3-slot.t3-error .t3-error-msg { display: block; }
+
+  .t3-task-card {
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    border-radius: 4px;
+    padding: 3px 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .t3-task-card:active { cursor: grabbing; }
+  .t3-task-card.t3-dragging {
+    opacity: 0.85;
+    transform: scale(1.03);
+    box-shadow: 0 5px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  .t3-task-card.t3-placed {
+    position: absolute;
+    top: 1px; left: 1px; right: 1px;
+    z-index: 10;
+    cursor: grab;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .t3-task-card .t3-card-title {
+    font-weight: 700;
+    font-size: 0.65rem;
+    line-height: 1.15;
+  }
+  .t3-task-card .t3-card-time {
+    font-size: 0.55rem;
+    opacity: 0.85;
+    margin-top: 1px;
+    font-weight: 600;
+  }
+  .t3-task-card.t3-commute { background: #6B7B8D; }
+  .t3-task-card.t3-cooking { background: #F4A261; }
+  .t3-task-card.t3-dinner { background: #F9CB9C; color: var(--dark-blue); }
+  .t3-task-card.t3-dinner .t3-card-time { color: var(--dark-blue); opacity: 0.7; }
+  .t3-task-card.t3-study { background: var(--light-blue); }
+  .t3-task-card.t3-friends { background: #9B86C9; }
+  .t3-task-card.t3-sport { background: #E57373; }
+  .t3-task-card.t3-chores { background: #A0C4E8; }
+  .t3-task-card.t3-chores .t3-card-title,
+  .t3-task-card.t3-chores .t3-card-time { color: var(--dark-blue); }
+  .t3-task-card.t3-rest { background: var(--light-green); }
+  .t3-task-card.t3-rest .t3-card-title,
+  .t3-task-card.t3-rest .t3-card-time { color: var(--dark-blue); }
+
+  .t3-task-card.t3-touch-drag {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    transform: scale(1.08);
+  }
+
+  .t3-cards-panel {
+    background: white;
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 12px rgba(54,76,132,0.08);
+  }
+  .t3-cards-panel-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+  }
+  .t3-cards-container {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-height: 44px;
+  }
+  .t3-cards-container .t3-task-card {
+    width: 90px;
+    height: 38px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .t3-cards-container .t3-task-card .t3-card-title { font-size: 0.6rem; }
+  .t3-cards-container .t3-task-card .t3-card-time { font-size: 0.5rem; }
+
+  .t3-final-screen {
+    padding: 20px;
+  }
+  .t3-final-quote {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(54,76,132,0.08);
+    position: relative;
+    max-width: 480px;
+  }
+  .t3-final-quote::before {
+    content: """;
+    font-size: 2.5rem;
+    color: var(--light-blue);
+    position: absolute;
+    top: 4px; left: 10px;
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .t3-final-score {
+    font-size: 0.95rem;
+    color: var(--dark-blue);
+    margin-bottom: 20px;
+  }
+  .t3-final-score span {
+    font-weight: 800;
+    color: var(--light-blue);
+  }
+  .t3-btn-retry {
+    background: var(--light-blue);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 10px rgba(149,177,238,0.3);
+  }
+  .t3-btn-retry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(149,177,238,0.4);
+  }
+
+  .t3-calendar-success .t3-slot.t3-free {
+    animation: t3-successPulse 0.8s ease;
+  }
+  @keyframes t3-successPulse {
+    0%, 100% { background: transparent; }
+    50% { background: rgba(39,174,96,0.08); }
+  }
+
+  @media (min-width: 768px) {
+    .t3-time-header { width: 52px; }
+    .t3-time-scale { width: 52px; }
+    .t3-time-cell { font-size: 0.7rem; padding-right: 6px; }
+    .t3-day-header { font-size: 0.85rem; padding: 8px 4px; }
+    .t3-task-card.t3-placed { padding: 4px 6px; }
+    .t3-task-card.t3-placed .t3-card-title { font-size: 0.72rem; }
+    .t3-task-card.t3-placed .t3-card-time { font-size: 0.6rem; }
+    .t3-cards-container .t3-task-card { width: 110px; height: 44px; }
+    .t3-cards-container .t3-task-card .t3-card-title { font-size: 0.7rem; }
+    .t3-cards-container .t3-task-card .t3-card-time { font-size: 0.6rem; }
+    .t3-final-quote { font-size: 1.4rem; padding: 28px; }
+  }
+
+  /* === SPEAKER SECTION === */
+  .speaker-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+  .speaker-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 24px var(--shadow);
+    border: 2px solid var(--light-blue);
+  }
+  .speaker-photo {
+    width: 180px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 20px;
+    flex-shrink: 0;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+  }
+  .speaker-card:hover .speaker-photo {
+    filter: grayscale(0%);
+  }
+  .speaker-info h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+  }
+  .speaker-role {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .speaker-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--light-green);
+    color: var(--dark-blue);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .speaker-contact:hover {
+    background: var(--dark-blue);
+    color: white;
+    transform: translateY(-2px);
+  }
+  @media (max-width: 640px) {
+    .speaker-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 28px 20px;
+      gap: 24px;
+    }
+    .speaker-photo {
+      width: 140px;
+      height: 170px;
+    }
+    .speaker-info h3 { font-size: 20px; }
+  }
+
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<!-- Navigation dots -->
+<div class="nav-dots">
+  <button class="nav-dot active" onclick="scrollToSection('hero')" aria-label="Начало"></button>
+  <button class="nav-dot" onclick="scrollToSection('about')" aria-label="О лекции"></button>
+  <button class="nav-dot" onclick="scrollToSection('test')" aria-label="Тест"></button>
+  <button class="nav-dot" onclick="scrollToSection('focus')" aria-label="Фокусы"></button>
+  <button class="nav-dot" onclick="scrollToSection('game')" aria-label="Игра"></button>
+  <button class="nav-dot" onclick="scrollToSection('speaker')" aria-label="Спикер"></button>
+  <button class="nav-dot" onclick="scrollToSection('final')" aria-label="Финал"></button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-badge">Мини-лекция</div>
+  <h1>Как совмещать работу, учебу и личную жизнь без выгорания</h1>
+  <p>Четыре опоры: приоритеты, привычки, time blocking и инструменты. Проверь себя и потренируйся прямо здесь.</p>
+  <a href="#about" class="hero-cta">
+    Начать
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </a>
+</section>
+
+<!-- ABOUT / THESIS -->
+<section class="section" id="about">
+  <h2 class="section-title">О чём лекция</h2>
+  <p class="section-subtitle">Четыре шага от хаоса к устойчивой системе — без идеальных утренних рутин и перегрузов</p>
+
+  <div class="thesis-grid">
+    <div class="thesis-card">
+      <span class="thesis-icon">🎯</span>
+      <h3>Приоритеты</h3>
+      <p>Не все задачи равны. Матрица важности и срочности помогает отделить главное от срочного. Вопрос не «что успеть», а «что нельзя не сделать».</p>
+    </div>
+    <div class="thesis-card">
+      <span class="thesis-icon">🔄</span>
+      <h3>Привычки</h3>
+      <p>Устойчивые системы опираются на ритуалы, а не на мотивацию. Утренний обзор, вечерний итог, фиксированные слоты под учёбу.</p>
+    </div>
+    <div class="thesis-card">
+      <span class="thesis-icon">📅</span>
+      <h3>Time Blocking</h3>
+      <p>Если у задачи нет места в календаре — у неё в жизни практически нет шансов. Бронируй блоки времени и оставляй 20–30% буфера.</p>
+    </div>
+    <div class="thesis-card">
+      <span class="thesis-icon">🛠️</span>
+      <h3>Инструменты</h3>
+      <p>Один календарь + один таск-менеджер лучше пяти красивых сервисов. Главное — регулярно в них смотреть, а не выбрать «идеальный».</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITY 1: TEST -->
+<section class="activity-section" id="test">
+  <div class="activity-header">
+    <h3>📋 Проверь свой стиль планирования</h3>
+    <p>8 вопросов — и ты узнаешь, какой у тебя тип: Стратег, Гибкий навигатор, Спринтер или Перегруженный организатор</p>
+  </div>
+
+  <div class="t1-test" id="t1-timePlannerTest">
+    <div class="t1-test-header-decoration"></div>
+    <div class="t1-test-content">
+      <!-- Start Screen -->
+      <div class="t1-test-screen t1-start-screen t1-active" id="t1-startScreen">
+        <div class="t1-start-icon">📅</div>
+        <h1>Какой у тебя стиль планирования времени?</h1>
+        <p class="t1-subtitle">Ответь на несколько вопросов и узнай, как ты обычно организуешь свои дела</p>
+        <button class="t1-btn-primary" onclick="t1_startTest()">
+          Начать
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Question Screen -->
+      <div class="t1-test-screen t1-question-screen" id="t1-questionScreen">
+        <div class="t1-question-header">
+          <div class="t1-progress-bar">
+            <div class="t1-progress-fill" id="t1-progressFill" style="width: 12.5%"></div>
+          </div>
+          <div class="t1-progress-text" id="t1-progressText">1 из 8</div>
+          <h2 class="t1-question-text" id="t1-questionText"></h2>
+        </div>
+        <div class="t1-answers-list" id="t1-answersList"></div>
+        <button class="t1-btn-primary t1-next-btn" id="t1-nextBtn" onclick="t1_nextQuestion()">
+          Далее
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Result Screen -->
+      <div class="t1-test-screen t1-result-screen" id="t1-resultScreen">
+        <div class="t1-result-header">
+          <div class="t1-result-badge">Твой тип</div>
+          <h2 class="t1-result-type" id="t1-resultType"></h2>
+          <p class="t1-result-description" id="t1-resultDescription"></p>
+        </div>
+        <div class="t1-carousel-container">
+          <div class="t1-carousel-track" id="t1-carouselTrack"></div>
+        </div>
+        <div class="t1-carousel-controls">
+          <button class="t1-carousel-arrow" id="t1-prevArrow" onclick="t1_moveCarousel(-1)" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="t1-carousel-dots" id="t1-carouselDots"></div>
+          <button class="t1-carousel-arrow" id="t1-nextArrow" onclick="t1_moveCarousel(1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+        <button class="t1-restart-btn" onclick="t1_restartTest()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          Пройти еще раз
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITY 2: FOCUS WIDGET -->
+<section class="activity-section" id="focus">
+  <div class="activity-header">
+    <h3>🎯 Выбери 3 фокуса этой недели</h3>
+    <p>Из 8 сфер жизни — те, что действительно важны прямо сейчас. Узнай свой профиль баланса.</p>
+  </div>
+
+  <div class="t2-widget">
+    <div class="t2-widget-header">
+      <h1>Выбери 3 фокуса этой недели</h1>
+      <p>Из 8 вариантов — те, что действительно важны</p>
+    </div>
+    <div class="t2-widget-body">
+      <!-- Step 1 -->
+      <div id="t2-step1" class="t2-step t2-visible">
+        <div class="t2-pills" id="t2-pillsContainer">
+          <div class="t2-pill" data-id="work" data-cluster="D">
+            <span class="t2-icon">💼</span>
+            <span>Работа</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="t2-pill" data-id="study" data-cluster="D">
+            <span class="t2-icon">📚</span>
+            <span>Учеба</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="t2-pill" data-id="project" data-cluster="D">
+            <span class="t2-icon">🚀</span>
+            <span>Проект</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="t2-pill" data-id="health" data-cluster="R">
+            <span class="t2-icon">🏃</span>
+            <span>Здоровье</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="t2-pill" data-id="sleep" data-cluster="R">
+            <span class="t2-icon">😴</span>
+            <span>Сон</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="t2-pill" data-id="rest" data-cluster="R">
+            <span class="t2-icon">🌿</span>
+            <span>Отдых</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="t2-pill" data-id="relations" data-cluster="Z">
+            <span class="t2-icon">🤝</span>
+            <span>Отношения</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="t2-pill" data-id="home" data-cluster="Z">
+            <span class="t2-icon">🏠</span>
+            <span>Быт</span>
+            <span class="t2-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+        </div>
+
+        <div class="t2-counter-row">
+          <div class="t2-counter">Выбрано: <span class="t2-num" id="t2-counterNum">0</span> / 3</div>
+          <button class="t2-reset-link" id="t2-resetBtn">Сбросить</button>
+        </div>
+
+        <button class="t2-btn-primary" id="t2-submitBtn">Узнать свой профиль</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="t2-step2" class="t2-step">
+        <div class="t2-selected-tags" id="t2-selectedTags"></div>
+        <div class="t2-result-card">
+          <div class="t2-result-label" id="t2-resultLabel">Профиль</div>
+          <div class="t2-result-phrase" id="t2-resultPhrase"></div>
+          <div class="t2-result-question" id="t2-resultQuestion"></div>
+          <div class="t2-result-thesis">Три фокуса — это не список дел. Это решение, от чего отказаться.</div>
+          <button class="t2-btn-secondary" id="t2-retryBtn">Выбрать заново</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITY 3: TIME BLOCKING GAME -->
+<section class="activity-section" id="game">
+  <div class="activity-header">
+    <h3>🎮 Time Blocking — мини-игра</h3>
+    <p>Рабочая неделя уже занята. Расставь оставшиеся задачи по свободным окнам и не забудь про буфер.</p>
+  </div>
+
+  <div class="t3-app-container">
+    <!-- Экран 1: Выбор графика -->
+    <div class="t3-screen t3-centered t3-schedule-screen t3-active" id="t3-screen-schedule">
+      <h1>Когда ты работаешь?</h1>
+      <p>Выбери свой рабочий график, чтобы увидеть свободные окна</p>
+      <div class="t3-schedule-buttons">
+        <button class="t3-btn-schedule" onclick="t3_selectSchedule('9-17')">9:00 — 17:00</button>
+        <button class="t3-btn-schedule" onclick="t3_selectSchedule('10-18')">10:00 — 18:00</button>
+      </div>
+    </div>
+
+    <!-- Экран 2: Вводный -->
+    <div class="t3-screen t3-centered t3-intro-screen" id="t3-screen-intro">
+      <div class="t3-intro-text">
+        Рабочая неделя уже занята. Посмотри, какие окна остались — и реши, куда поставить учебу, отдых и важные дела. Помни про буфер.
+      </div>
+      <button class="t3-btn-primary" onclick="t3_startGame()">Начать</button>
+    </div>
+
+    <!-- Экран 3: Игра -->
+    <div class="t3-screen t3-game-screen" id="t3-screen-game">
+      <div class="t3-game-header">
+        <h2>📅 Расставь задачи по свободным окнам</h2>
+        <button class="t3-btn-check" id="t3-btn-check" onclick="t3_checkRules()">Проверить</button>
+      </div>
+
+      <div class="t3-calendar-outer" id="t3-calendar-outer">
+        <div class="t3-calendar-header">
+          <div class="t3-time-header"></div>
+          <div class="t3-day-headers" id="t3-day-headers"></div>
+        </div>
+        <div class="t3-calendar-body">
+          <div class="t3-time-scale" id="t3-time-scale"></div>
+          <div class="t3-days-grid" id="t3-days-grid"></div>
+        </div>
+      </div>
+
+      <div class="t3-cards-panel">
+        <div class="t3-cards-panel-title">🎯 Задачи (перетащи в слоты)</div>
+        <div class="t3-cards-container" id="t3-cards-container"></div>
+      </div>
+    </div>
+
+    <!-- Экран 4: Финальный -->
+    <div class="t3-screen t3-centered t3-final-screen" id="t3-screen-final">
+      <div class="t3-final-quote">
+        Если у задачи нет места в календаре — у неё в жизни практически нет шансов
+      </div>
+      <div class="t3-final-score" id="t3-final-score"></div>
+      <button class="t3-btn-retry" onclick="t3_resetGame()">Попробовать снова</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- SPEAKER -->
+<section class="speaker-section" id="speaker">
+  <h2 class="section-title">Спикер</h2>
+  <p class="section-subtitle">Человек, который знает, как уместить в сутки больше, чем кажется возможным</p>
+  <div class="speaker-card">
+    <img src="speaker.jpg" alt="Хуснутдинова Наиля" class="speaker-photo">
+    <div class="speaker-info">
+      <h3>Хуснутдинова Наиля</h3>
+      <p class="speaker-role">
+        Преподаватель иностранных языков, педагогический дизайнер, мастер жить в балансе с ощущением 32 часов в сутках.
+      </p>
+      <a href="mailto:nailiapeddesign@yandex.ru" class="speaker-contact">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        nailiapeddesign@yandex.ru
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-block" id="quote">
+  <p>Цель тайм-менеджмента — не жить в ощущении, что ты «контролируешь всё», а уменьшить хаос до уровня, когда ты понимаешь, что сегодня для тебя главное.</p>
+  <div class="author">— Главная мысль лекции</div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta" id="final">
+  <h2>Готов внедрять?</h2>
+  <p>Начни с одного утреннего обзора и одного фиксированного слота под учёбу этой недели.</p>
+  <a href="#test" class="btn-white">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+    Пройти заново
+  </a>
+</section>
+
+<script>
+/* ========================= NAVIGATION ========================= */
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+const sections = ['hero','about','test','focus','game','final'];
+const dots = document.querySelectorAll('.nav-dot');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = sections.indexOf(entry.target.id);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+
+/* ========================= WIDGET 1: TEST ========================= */
+const t1_types = {
+  strategist: 'Стратег',
+  flexible: 'Гибкий навигатор',
+  sprinter: 'Спринтер',
+  overloaded: 'Перегруженный организатор'
+};
+
+const t1_questions = [
+  {
+    text: 'Как ты обычно планируешь свой день?',
+    answers: [
+      { text: 'Заранее расписываю дела и время', type: 'strategist' },
+      { text: 'Выделяю главное, остальное решаю по ситуации', type: 'flexible' },
+      { text: 'Делаю то, на что сейчас есть энергия', type: 'sprinter' },
+      { text: 'Пытаюсь удержать все в голове', type: 'overloaded' }
+    ]
+  },
+  {
+    text: 'Что чаще всего происходит с твоими задачами?',
+    answers: [
+      { text: 'Я обычно выполняю их по плану', type: 'strategist' },
+      { text: 'Я меняю порядок, если появляются новые обстоятельства', type: 'flexible' },
+      { text: 'Часто откладываю до момента, когда уже надо срочно', type: 'sprinter' },
+      { text: 'Их становится слишком много, и я теряюсь', type: 'overloaded' }
+    ]
+  },
+  {
+    text: 'Как ты относишься к дедлайнам?',
+    answers: [
+      { text: 'Люблю, когда все понятно и заранее определено', type: 'strategist' },
+      { text: 'Нормально, если есть возможность немного адаптировать план', type: 'flexible' },
+      { text: 'Лучше всего собираюсь именно перед дедлайном', type: 'sprinter' },
+      { text: 'Дедлайны меня часто перегружают', type: 'overloaded' }
+    ]
+  },
+  {
+    text: 'Если день пошел не по плану, ты...',
+    answers: [
+      { text: 'Стараюсь быстро перестроить расписание', type: 'strategist' },
+      { text: 'Спокойно адаптируюсь и двигаюсь дальше', type: 'flexible' },
+      { text: 'Могу бросить план и действовать по настроению', type: 'sprinter' },
+      { text: 'Чувствую, что все разваливается', type: 'overloaded' }
+    ]
+  },
+  {
+    text: 'Какой формат планирования тебе ближе?',
+    answers: [
+      { text: 'Четкий список задач или календарь', type: 'strategist' },
+      { text: 'Гибкий список приоритетов', type: 'flexible' },
+      { text: 'Минимум планирования, максимум действия', type: 'sprinter' },
+      { text: 'У меня много списков, но они не всегда помогают', type: 'overloaded' }
+    ]
+  },
+  {
+    text: 'Когда ты работаешь продуктивнее всего?',
+    answers: [
+      { text: 'Когда есть понятный план шагов', type: 'strategist' },
+      { text: 'Когда понимаю приоритет, но могу менять подход', type: 'flexible' },
+      { text: 'Когда чувствую прилив энергии или срочность', type: 'sprinter' },
+      { text: 'Когда задач не слишком много и они не давят', type: 'overloaded' }
+    ]
+  },
+  {
+    text: 'Что для тебя самое сложное в планировании?',
+    answers: [
+      { text: 'Принять, что не все идет идеально', type: 'strategist' },
+      { text: 'Не распыляться на слишком многое', type: 'flexible' },
+      { text: 'Начинать заранее, а не в последний момент', type: 'sprinter' },
+      { text: 'Не перегружать себя задачами', type: 'overloaded' }
+    ]
+  },
+  {
+    text: 'Какой результат планирования тебе ближе всего?',
+    answers: [
+      { text: 'Я чувствую контроль и ясность', type: 'strategist' },
+      { text: 'Я чувствую свободу и устойчивость', type: 'flexible' },
+      { text: 'Я чувствую драйв и быстрый прогресс', type: 'sprinter' },
+      { text: 'Я чувствую меньше хаоса и тревоги', type: 'overloaded' }
+    ]
+  }
+];
+
+const t1_results = {
+  strategist: {
+    description: 'Ты любишь порядок, понятность и заранее видеть общую картину. Тебе легче двигаться, когда есть структура, сроки и ощущение контроля.',
+    strengths: ['Умеешь организовывать дела', 'Хорошо работаешь с дедлайнами', 'Умеешь разбивать большие задачи на этапы'],
+    blockers: ['Раздражение, если план нарушается', 'Излишний контроль', 'Трудность в адаптации к неожиданностям'],
+    tips: ['Недельное планирование', 'Календарь с тайм-блоками', 'Правило 3 главных задач в день']
+  },
+  flexible: {
+    description: 'Ты умеешь сочетать планирование и адаптацию. Для тебя важно понимать направление, но не загонять себя в слишком жесткие рамки.',
+    strengths: ['Гибкость', 'Устойчивость к изменениям', 'Умение держать фокус на главном'],
+    blockers: ['Распыление внимания', 'Слишком мягкие рамки', 'Откладывание неинтересных задач'],
+    tips: ['Список приоритетов на день', 'Недельный обзор задач', 'Система «главное + дополнительное»']
+  },
+  sprinter: {
+    description: 'Ты часто включаешься через энергию, интерес или срочность. Тебе легче работать интенсивно, чем ровно и одинаково каждый день.',
+    strengths: ['Быстрый старт в нужный момент', 'Высокая энергия в коротких рывках', 'Умение собираться под задачу'],
+    blockers: ['Откладывание до последнего', 'Перегруз в конце срока', 'Нестабильный ритм'],
+    tips: ['Короткие рабочие спринты', 'Дедлайны на подэтапы', 'Визуальный трекер прогресса']
+  },
+  overloaded: {
+    description: 'Ты хочешь держать дела под контролем, но часто задач становится слишком много, и это вызывает усталость или хаос.',
+    strengths: ['Ответственность', 'Желание все учесть', 'Внимательность к деталям'],
+    blockers: ['Перегрузка', 'Тревога из-за количества задач', 'Трудность в выборе главного'],
+    tips: ['Ограничение задач до 3-5 в день', 'Приоритизация по важности', 'Правило «сначала главное, потом остальное»']
+  }
+};
+
+let t1_currentQuestion = 0;
+let t1_scores = { strategist: 0, flexible: 0, sprinter: 0, overloaded: 0 };
+let t1_selectedAnswer = null;
+let t1_answerHistory = [];
+let t1_currentSlide = 0;
+const t1_totalSlides = 3;
+
+const t1_startScreen = document.getElementById('t1-startScreen');
+const t1_questionScreen = document.getElementById('t1-questionScreen');
+const t1_resultScreen = document.getElementById('t1-resultScreen');
+const t1_progressFill = document.getElementById('t1-progressFill');
+const t1_progressText = document.getElementById('t1-progressText');
+const t1_questionText = document.getElementById('t1-questionText');
+const t1_answersList = document.getElementById('t1-answersList');
+const t1_nextBtn = document.getElementById('t1-nextBtn');
+const t1_carouselTrack = document.getElementById('t1-carouselTrack');
+const t1_carouselDots = document.getElementById('t1-carouselDots');
+const t1_prevArrow = document.getElementById('t1-prevArrow');
+const t1_nextArrow = document.getElementById('t1-nextArrow');
+
+function t1_showScreen(screen) {
+  document.querySelectorAll('.t1-test-screen').forEach(s => s.classList.remove('t1-active'));
+  screen.classList.add('t1-active');
+}
+
+function t1_startTest() {
+  t1_currentQuestion = 0;
+  t1_scores = { strategist: 0, flexible: 0, sprinter: 0, overloaded: 0 };
+  t1_answerHistory = [];
+  t1_currentSlide = 0;
+  t1_showScreen(t1_questionScreen);
+  t1_renderQuestion();
+}
+
+function t1_renderQuestion() {
+  const q = t1_questions[t1_currentQuestion];
+  t1_questionText.textContent = q.text;
+  t1_progressText.textContent = `${t1_currentQuestion + 1} из ${t1_questions.length}`;
+  t1_progressFill.style.width = `${((t1_currentQuestion + 1) / t1_questions.length) * 100}%`;
+  t1_answersList.innerHTML = '';
+  t1_selectedAnswer = null;
+  t1_nextBtn.classList.remove('t1-visible');
+  q.answers.forEach((answer, index) => {
+    const btn = document.createElement('button');
+    btn.className = 't1-answer-option';
+    btn.innerHTML = `${answer.text}<span class="t1-check-icon">✓</span>`;
+    btn.onclick = () => t1_selectAnswer(index, answer.type);
+    t1_answersList.appendChild(btn);
+  });
+}
+
+function t1_selectAnswer(index, type) {
+  const options = t1_answersList.querySelectorAll('.t1-answer-option');
+  options.forEach((opt, i) => opt.classList.toggle('t1-selected', i === index));
+  t1_selectedAnswer = type;
+  t1_nextBtn.classList.add('t1-visible');
+}
+
+function t1_nextQuestion() {
+  if (!t1_selectedAnswer) return;
+  t1_scores[t1_selectedAnswer]++;
+  t1_answerHistory.push(t1_selectedAnswer);
+  if (t1_currentQuestion < t1_questions.length - 1) {
+    t1_currentQuestion++;
+    t1_renderQuestion();
+  } else {
+    t1_showResult();
+  }
+}
+
+function t1_showResult() {
+  let maxScore = 0;
+  let winners = [];
+  for (const [type, score] of Object.entries(t1_scores)) {
+    if (score > maxScore) { maxScore = score; winners = [type]; }
+    else if (score === maxScore) winners.push(type);
+  }
+  let winner;
+  if (winners.length === 1) winner = winners[0];
+  else {
+    const lastThree = t1_answerHistory.slice(-3);
+    const lastThreeCounts = {};
+    winners.forEach(w => lastThreeCounts[w] = 0);
+    lastThree.forEach(ans => { if (winners.includes(ans)) lastThreeCounts[ans]++; });
+    let maxLast = 0, lastWinners = [];
+    for (const [type, count] of Object.entries(lastThreeCounts)) {
+      if (count > maxLast) { maxLast = count; lastWinners = [type]; }
+      else if (count === maxLast) lastWinners.push(type);
+    }
+    winner = lastWinners.length === 1 ? lastWinners[0] : 'flexible';
+  }
+  const result = t1_results[winner];
+  const typeName = t1_types[winner];
+  document.getElementById('t1-resultType').textContent = typeName;
+  document.getElementById('t1-resultDescription').textContent = result.description;
+  const cardsData = [
+    { emoji: '💪', title: 'Твои сильные стороны', items: result.strengths, class: 't1-strengths-card' },
+    { emoji: '⚠️', title: 'Что может мешать', items: result.blockers, class: 't1-blockers-card' },
+    { emoji: '✨', title: 'Что тебе подойдет', items: result.tips, class: 't1-tips-card' }
+  ];
+  t1_carouselTrack.innerHTML = cardsData.map(card => `
+    <div class="t1-carousel-card">
+      <div class="t1-result-card-inner ${card.class}">
+        <span class="t1-card-emoji">${card.emoji}</span>
+        <div class="t1-card-title">${card.title}</div>
+        <ul class="t1-card-list">${card.items.map(item => `<li>${item}</li>`).join('')}</ul>
+      </div>
+    </div>
+  `).join('');
+  t1_carouselDots.innerHTML = cardsData.map((_, i) => `
+    <button class="t1-carousel-dot ${i === 0 ? 't1-active' : ''}" onclick="t1_goToSlide(${i})"></button>
+  `).join('');
+  t1_updateCarousel();
+  t1_showScreen(t1_resultScreen);
+}
+
+function t1_moveCarousel(direction) {
+  t1_currentSlide = Math.max(0, Math.min(t1_totalSlides - 1, t1_currentSlide + direction));
+  t1_updateCarousel();
+}
+
+function t1_goToSlide(index) {
+  t1_currentSlide = index;
+  t1_updateCarousel();
+}
+
+function t1_updateCarousel() {
+  t1_carouselTrack.style.transform = `translateX(-${t1_currentSlide * 100}%)`;
+  t1_carouselDots.querySelectorAll('.t1-carousel-dot').forEach((dot, i) => dot.classList.toggle('t1-active', i === t1_currentSlide));
+  t1_prevArrow.disabled = t1_currentSlide === 0;
+  t1_nextArrow.disabled = t1_currentSlide === t1_totalSlides - 1;
+}
+
+function t1_restartTest() { t1_startTest(); }
+
+let t1_touchStartX = 0, t1_touchEndX = 0;
+t1_carouselTrack.addEventListener('touchstart', e => { t1_touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+t1_carouselTrack.addEventListener('touchend', e => {
+  t1_touchEndX = e.changedTouches[0].screenX;
+  const diff = t1_touchStartX - t1_touchEndX;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0 && t1_currentSlide < t1_totalSlides - 1) t1_moveCarousel(1);
+    else if (diff < 0 && t1_currentSlide > 0) t1_moveCarousel(-1);
+  }
+}, { passive: true });
+
+document.addEventListener('keydown', e => {
+  if (t1_resultScreen.classList.contains('t1-active')) {
+    if (e.key === 'ArrowLeft') t1_moveCarousel(-1);
+    if (e.key === 'ArrowRight') t1_moveCarousel(1);
+  }
+  if (t1_questionScreen.classList.contains('t1-active') && e.key === 'Enter' && t1_selectedAnswer) t1_nextQuestion();
+});
+
+/* ========================= WIDGET 2: FOCUS ========================= */
+(function() {
+  const pills = document.querySelectorAll('.t2-pill');
+  const counterNum = document.getElementById('t2-counterNum');
+  const submitBtn = document.getElementById('t2-submitBtn');
+  const resetBtn = document.getElementById('t2-resetBtn');
+  const step1 = document.getElementById('t2-step1');
+  const step2 = document.getElementById('t2-step2');
+  const selectedTags = document.getElementById('t2-selectedTags');
+  const resultLabel = document.getElementById('t2-resultLabel');
+  const resultPhrase = document.getElementById('t2-resultPhrase');
+  const resultQuestion = document.getElementById('t2-resultQuestion');
+  const retryBtn = document.getElementById('t2-retryBtn');
+
+  let selected = [];
+
+  function updateUI() {
+    counterNum.textContent = selected.length;
+    pills.forEach(pill => {
+      const id = pill.dataset.id;
+      const isSelected = selected.includes(id);
+      pill.classList.toggle('t2-selected', isSelected);
+      if (selected.length >= 3 && !isSelected) pill.classList.add('t2-disabled');
+      else pill.classList.remove('t2-disabled');
+    });
+    submitBtn.classList.toggle('t2-active', selected.length === 3);
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const id = pill.dataset.id;
+      if (selected.includes(id)) selected = selected.filter(s => s !== id);
+      else if (selected.length < 3) selected.push(id);
+      updateUI();
+    });
+  });
+
+  resetBtn.addEventListener('click', () => { selected = []; updateUI(); });
+
+  submitBtn.addEventListener('click', () => {
+    if (selected.length !== 3) return;
+    const clusters = { D: 0, R: 0, Z: 0 };
+    const names = {
+      work: '💼 Работа', study: '📚 Учеба', project: '🚀 Проект',
+      health: '🏃 Здоровье', sleep: '😴 Сон', rest: '🌿 Отдых',
+      relations: '🤝 Отношения', home: '🏠 Быт'
+    };
+    selected.forEach(id => {
+      const cluster = document.querySelector('.t2-pill[data-id="' + id + '"]').dataset.cluster;
+      clusters[cluster]++;
+    });
+    const D = clusters.D, R = clusters.R, Z = clusters.Z;
+    let label = '', phrase = '', question = '';
+
+    if (D === 3) {
+      label = 'Достижение';
+      phrase = 'Три фокуса — и все про рост. Кто восстанавливает тебя этой неделей?';
+      question = 'Ты выбрал(а) это осознанно или так получилось само?';
+    } else if (R === 3) {
+      label = 'Восстановление';
+      phrase = 'Неделя восстановления. Это смелый выбор — или вынужденный?';
+      question = 'Что тебя так истощило, что это стало приоритетом?';
+    } else if (D === 2 && R === 1) {
+      label = 'Достижение + Ресурс';
+      phrase = 'Ты дал(а) себе один якорь для восстановления. Защити его от рабочей недели.';
+      question = 'Этот ресурс реально попадет в расписание или останется намерением?';
+    } else if (D === 2 && Z === 1) {
+      label = 'Достижение + Забота';
+      phrase = 'Продуктивная неделя с якорем на людях. Забота здесь — топливо или обязанность?';
+      question = 'Ты выбрал(а) это потому что хочешь, или потому что надо?';
+    } else if (D === 1 && R === 2) {
+      label = 'Один результат + Два ресурса';
+      phrase = 'Ты осознанно притормаживаешь. Один фокус на результат — и два на себя.';
+      question = 'Это временный режим или ты учишься так жить постоянно?';
+    } else if (D === 1 && Z === 2) {
+      label = 'Один результат + Две заботы';
+      phrase = 'Неделя про других с одним личным якорем. Ты в этом плане есть?';
+      question = 'Если убрать заботу об остальных — что останется для тебя?';
+    } else if (R === 2 && Z === 1) {
+      label = 'Два ресурса + Забота';
+      phrase = 'Ты восстанавливаешься и держишь связь с людьми. Продуктивность сейчас не в приоритете — и это честно.';
+      question = 'Тебе комфортно с этим выбором или есть тревога «я недостаточно делаю»?';
+    } else if (R === 1 && Z === 2) {
+      label = 'Ресурс + Две заботы';
+      phrase = 'Неделя заботы о других и немного о себе. Баланс хрупкий.';
+      question = '«Немного о себе» точно попадет в неделю или его вытеснят остальные двое?';
+    } else if (D === 1 && R === 1 && Z === 1) {
+      label = 'Баланс';
+      phrase = 'Идеальный баланс на бумаге. Самый сложный в исполнении.';
+      question = 'Какой из трех ты защитишь первым, если неделя пойдет не по плану?';
+    }
+
+    selectedTags.innerHTML = selected.map(id => '<span class="t2-selected-tag">' + names[id] + '</span>').join('');
+    resultLabel.textContent = label;
+    resultPhrase.textContent = phrase;
+    resultQuestion.textContent = question;
+    step1.classList.remove('t2-visible');
+    step2.classList.add('t2-visible');
+  });
+
+  retryBtn.addEventListener('click', () => {
+    selected = [];
+    updateUI();
+    step2.classList.remove('t2-visible');
+    step1.classList.add('t2-visible');
+  });
+})();
+
+/* ========================= WIDGET 3: GAME ========================= */
+const t3_days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт'];
+const t3_slotHeight = 40;
+const t3_slotMinutes = 30;
+
+const t3_schedules = {
+  '9-17': { startHour: 17, endHour: 22 },
+  '10-18': { startHour: 18, endHour: 23 }
+};
+
+const t3_cardTypes = [
+  { type: 'commute', title: 'Дорога до дома', duration: 2, count: 5, cls: 't3-commute' },
+  { type: 'cooking', title: 'Готовка + ужин', duration: 2, count: 2, cls: 't3-cooking' },
+  { type: 'dinner', title: 'Ужин', duration: 1, count: 3, cls: 't3-dinner' },
+  { type: 'study', title: 'Учёба', duration: 6, count: 2, cls: 't3-study' },
+  { type: 'study', title: 'Учёба', duration: 3, count: 1, cls: 't3-study' },
+  { type: 'friends', title: 'Встреча с друзьями', duration: 4, count: 1, cls: 't3-friends' },
+  { type: 'sport', title: 'Спорт', duration: 2, count: 2, cls: 't3-sport' },
+  { type: 'chores', title: 'Бытовые задачи', duration: 1, count: 2, cls: 't3-chores' },
+  { type: 'rest', title: 'Отдых', duration: 1, count: 3, cls: 't3-rest' }
+];
+
+let t3_currentSchedule = null;
+let t3_placements = {};
+let t3_firstTryRules = { commute: false, cooking: false, buffer: false };
+let t3_attempts = 0;
+
+function t3_showScreen(id) {
+  document.querySelectorAll('.t3-screen').forEach(s => s.classList.remove('t3-active'));
+  document.getElementById(id).classList.add('t3-active');
+}
+
+function t3_selectSchedule(type) {
+  t3_currentSchedule = type;
+  t3_showScreen('t3-screen-intro');
+}
+
+function t3_startGame() {
+  t3_attempts = 0;
+  t3_firstTryRules = { commute: false, cooking: false, buffer: false };
+  t3_placements = {};
+  t3_renderCardsPool();
+  t3_renderCalendar();
+  t3_initDragAndDrop();
+  t3_showScreen('t3-screen-game');
+}
+
+function t3_resetGame() {
+  t3_placements = {};
+  t3_showScreen('t3-screen-schedule');
+}
+
+function t3_getSlotsPerDay() {
+  const cfg = t3_schedules[t3_currentSchedule];
+  return (cfg.endHour - cfg.startHour) * 2;
+}
+
+function t3_renderCardsPool() {
+  const container = document.getElementById('t3-cards-container');
+  container.innerHTML = '';
+  let idCounter = 1;
+  t3_cardTypes.forEach(ct => {
+    for (let i = 0; i < ct.count; i++) {
+      const card = document.createElement('div');
+      card.className = `t3-task-card ${ct.cls}`;
+      card.draggable = true;
+      card.dataset.type = ct.type;
+      card.dataset.id = `${ct.type}${idCounter++}`;
+      card.dataset.duration = ct.duration;
+      const hours = ct.duration * t3_slotMinutes / 60;
+      const timeLabel = hours === 0.5 ? '30 мин' : hours === 1 ? '60 мин' : hours === 1.5 ? '90 мин' : hours === 2 ? '2 ч' : hours === 3 ? '3 ч' : `${ct.duration * t3_slotMinutes} мин`;
+      card.innerHTML = `<div class="t3-card-title">${ct.title}</div><div class="t3-card-time">${timeLabel}</div>`;
+      container.appendChild(card);
+    }
+  });
+}
+
+function t3_renderCalendar() {
+  const cfg = t3_schedules[t3_currentSchedule];
+  const slotsPerDay = t3_getSlotsPerDay();
+
+  const dayHeaders = document.getElementById('t3-day-headers');
+  dayHeaders.innerHTML = '';
+  t3_days.forEach(day => {
+    const dh = document.createElement('div');
+    dh.className = 't3-day-header';
+    dh.textContent = day;
+    dayHeaders.appendChild(dh);
+  });
+
+  const timeScale = document.getElementById('t3-time-scale');
+  timeScale.innerHTML = '';
+  for (let h = cfg.startHour; h < cfg.endHour; h++) {
+    const cell = document.createElement('div');
+    cell.className = 't3-time-cell';
+    cell.textContent = `${h}:00`;
+    timeScale.appendChild(cell);
+  }
+
+  const daysGrid = document.getElementById('t3-days-grid');
+  daysGrid.innerHTML = '';
+  t3_days.forEach((day, dayIdx) => {
+    const col = document.createElement('div');
+    col.className = 't3-day-column';
+    col.dataset.day = dayIdx;
+    const slotsContainer = document.createElement('div');
+    slotsContainer.className = 't3-slots-container';
+    for (let s = 0; s < slotsPerDay; s++) {
+      const slot = document.createElement('div');
+      slot.className = 't3-slot' + (s % 2 === 1 ? ' t3-hour-boundary' : '');
+      slot.dataset.day = dayIdx;
+      slot.dataset.slot = s;
+      slot.innerHTML = '<div class="t3-slot-bg"></div><div class="t3-error-msg"></div>';
+      slotsContainer.appendChild(slot);
+    }
+    col.appendChild(slotsContainer);
+    daysGrid.appendChild(col);
+  });
+}
+
+function t3_initDragAndDrop() {
+  const cards = document.querySelectorAll('.t3-task-card');
+  const slots = document.querySelectorAll('.t3-slot');
+  cards.forEach(card => {
+    card.addEventListener('dragstart', t3_onDragStart);
+    card.addEventListener('dragend', t3_onDragEnd);
+    card.addEventListener('touchstart', t3_onTouchStart, { passive: false });
+    card.addEventListener('touchmove', t3_onTouchMove, { passive: false });
+    card.addEventListener('touchend', t3_onTouchEnd);
+  });
+  slots.forEach(slot => {
+    slot.addEventListener('dragover', t3_onDragOver);
+    slot.addEventListener('dragenter', t3_onDragEnter);
+    slot.addEventListener('dragleave', t3_onDragLeave);
+    slot.addEventListener('drop', t3_onDrop);
+  });
+  const container = document.getElementById('t3-cards-container');
+  container.addEventListener('dragover', e => e.preventDefault());
+  container.addEventListener('drop', e => {
+    e.preventDefault();
+    const cardId = e.dataTransfer.getData('text/plain');
+    t3_returnCardToPool(cardId);
+  });
+}
+
+let t3_draggedCard = null;
+let t3_touchDragCard = null;
+let t3_touchStartX = 0, t3_touchStartY = 0, t3_touchOffsetX = 0, t3_touchOffsetY = 0;
+let t3_isDragging = false;
+const t3_dragThreshold = 10;
+
+function t3_onDragStart(e) {
+  t3_draggedCard = e.target.closest('.t3-task-card');
+  if (!t3_draggedCard) return;
+  e.dataTransfer.setData('text/plain', t3_draggedCard.dataset.id);
+  t3_draggedCard.classList.add('t3-dragging');
+}
+function t3_onDragEnd(e) {
+  if (t3_draggedCard) t3_draggedCard.classList.remove('t3-dragging');
+  t3_draggedCard = null;
+  document.querySelectorAll('.t3-slot').forEach(s => s.classList.remove('t3-drag-over'));
+}
+function t3_onDragOver(e) { e.preventDefault(); }
+function t3_onDragEnter(e) {
+  const slot = e.target.closest('.t3-slot');
+  if (slot && t3_canDropHere(t3_draggedCard, slot)) slot.classList.add('t3-drag-over');
+}
+function t3_onDragLeave(e) {
+  const slot = e.target.closest('.t3-slot');
+  if (slot) slot.classList.remove('t3-drag-over');
+}
+function t3_onDrop(e) {
+  e.preventDefault();
+  const slot = e.target.closest('.t3-slot');
+  if (!slot) return;
+  slot.classList.remove('t3-drag-over');
+  const cardId = e.dataTransfer.getData('text/plain');
+  const card = document.querySelector(`.t3-task-card[data-id="${cardId}"]`);
+  if (card && t3_canDropHere(card, slot)) t3_placeCard(card, slot);
+}
+
+function t3_onTouchStart(e) {
+  const touch = e.touches[0];
+  t3_touchDragCard = e.currentTarget;
+  t3_touchStartX = touch.clientX;
+  t3_touchStartY = touch.clientY;
+  const rect = t3_touchDragCard.getBoundingClientRect();
+  t3_touchOffsetX = touch.clientX - rect.left;
+  t3_touchOffsetY = touch.clientY - rect.top;
+  t3_isDragging = false;
+}
+function t3_onTouchMove(e) {
+  if (!t3_touchDragCard) return;
+  const touch = e.touches[0];
+  const dx = Math.abs(touch.clientX - t3_touchStartX);
+  const dy = Math.abs(touch.clientY - t3_touchStartY);
+  if (!t3_isDragging && Math.max(dx, dy) > t3_dragThreshold) t3_isDragging = true;
+  if (t3_isDragging) {
+    e.preventDefault();
+    const rect = t3_touchDragCard.getBoundingClientRect();
+    t3_touchDragCard.style.position = 'fixed';
+    t3_touchDragCard.style.width = rect.width + 'px';
+    t3_touchDragCard.style.height = rect.height + 'px';
+    t3_touchDragCard.style.left = (touch.clientX - t3_touchOffsetX) + 'px';
+    t3_touchDragCard.style.top = (touch.clientY - t3_touchOffsetY) + 'px';
+    t3_touchDragCard.style.zIndex = '9999';
+    t3_touchDragCard.classList.add('t3-touch-drag');
+    const elem = document.elementFromPoint(touch.clientX, touch.clientY);
+    document.querySelectorAll('.t3-slot').forEach(s => s.classList.remove('t3-drag-over'));
+    const slot = elem ? elem.closest('.t3-slot') : null;
+    if (slot && t3_canDropHere(t3_touchDragCard, slot)) slot.classList.add('t3-drag-over');
+  }
+}
+function t3_onTouchEnd(e) {
+  if (!t3_touchDragCard) return;
+  const touch = e.changedTouches[0];
+  t3_touchDragCard.classList.remove('t3-dragging', 't3-touch-drag');
+  t3_touchDragCard.style.position = '';
+  t3_touchDragCard.style.left = '';
+  t3_touchDragCard.style.top = '';
+  t3_touchDragCard.style.width = '';
+  t3_touchDragCard.style.height = '';
+  t3_touchDragCard.style.zIndex = '';
+  if (t3_isDragging) {
+    const elem = document.elementFromPoint(touch.clientX, touch.clientY);
+    const slot = elem ? elem.closest('.t3-slot') : null;
+    document.querySelectorAll('.t3-slot').forEach(s => s.classList.remove('t3-drag-over'));
+    if (slot && t3_canDropHere(t3_touchDragCard, slot)) t3_placeCard(t3_touchDragCard, slot);
+  }
+  t3_touchDragCard = null;
+  t3_isDragging = false;
+}
+
+function t3_canDropHere(card, slot) {
+  if (!card || !slot) return false;
+  const day = parseInt(slot.dataset.day);
+  const startSlot = parseInt(slot.dataset.slot);
+  const duration = parseInt(card.dataset.duration);
+  const slotsPerDay = t3_getSlotsPerDay();
+  if (startSlot + duration > slotsPerDay) return false;
+  for (let s = startSlot; s < startSlot + duration; s++) {
+    if (t3_isSlotOccupied(day, s, card.dataset.id)) return false;
+  }
+  return true;
+}
+function t3_isSlotOccupied(day, slot, excludeId) {
+  for (let key in t3_placements) {
+    const p = t3_placements[key];
+    if (excludeId && p.id === excludeId) continue;
+    if (p.day === day && slot >= p.startSlot && slot < p.startSlot + p.duration) return true;
+  }
+  return false;
+}
+function t3_findKeyById(id) {
+  for (let key in t3_placements) { if (t3_placements[key].id === id) return key; }
+  return null;
+}
+function t3_getPlacementAt(day, slot) {
+  for (let key in t3_placements) {
+    const p = t3_placements[key];
+    if (p.day === day && slot >= p.startSlot && slot < p.startSlot + p.duration) return p;
+  }
+  return null;
+}
+function t3_placeCard(card, targetSlot) {
+  const day = parseInt(targetSlot.dataset.day);
+  const startSlot = parseInt(targetSlot.dataset.slot);
+  const duration = parseInt(card.dataset.duration);
+  const oldKey = t3_findKeyById(card.dataset.id);
+  if (oldKey) delete t3_placements[oldKey];
+  if (card.parentElement) card.remove();
+  targetSlot.appendChild(card);
+  card.classList.add('t3-placed');
+  card.classList.remove('t3-dragging');
+  card.style.height = (duration * t3_slotHeight - 2) + 'px';
+  const key = `${day}_${startSlot}`;
+  t3_placements[key] = { id: card.dataset.id, type: card.dataset.type, day: day, startSlot: startSlot, duration: duration };
+  t3_clearErrors();
+}
+function t3_returnCardToPool(cardId) {
+  const card = document.querySelector(`.t3-task-card[data-id="${cardId}"]`);
+  if (!card) return;
+  const key = t3_findKeyById(cardId);
+  if (key) delete t3_placements[key];
+  card.classList.remove('t3-placed');
+  card.style.height = '';
+  if (card.parentElement) card.remove();
+  document.getElementById('t3-cards-container').appendChild(card);
+  t3_clearErrors();
+}
+function t3_clearErrors() {
+  document.querySelectorAll('.t3-slot').forEach(s => {
+    s.classList.remove('t3-error', 't3-success');
+    const msg = s.querySelector('.t3-error-msg');
+    if (msg) msg.textContent = '';
+  });
+  document.getElementById('t3-calendar-outer').classList.remove('t3-calendar-success');
+}
+
+function t3_checkRules() {
+  t3_attempts++;
+  t3_clearErrors();
+  let allValid = true;
+  const slotsPerDay = t3_getSlotsPerDay();
+
+  let commuteDays = 0, commuteValid = true;
+  for (let d = 0; d < 5; d++) {
+    const p = t3_placements[`${d}_0`];
+    if (p && p.type === 'commute') commuteDays++;
+  }
+  if (commuteDays < 4) {
+    commuteValid = false; allValid = false;
+    for (let d = 0; d < 5; d++) {
+      const p = t3_placements[`${d}_0`];
+      if (!p || p.type !== 'commute') {
+        const slot = document.querySelector(`.t3-slot[data-day="${d}"][data-slot="0"]`);
+        if (slot) {
+          slot.classList.add('t3-error');
+          const msg = slot.querySelector('.t3-error-msg');
+          if (msg) msg.textContent = 'Ты не добрался домой — откуда начнется вечер?';
+        }
+      }
+    }
+  }
+
+  let cookingValid = true;
+  for (let d = 0; d < 5; d++) {
+    let hasFood = false;
+    for (let s = 0; s < slotsPerDay; s++) {
+      const p = t3_getPlacementAt(d, s);
+      if (p && (p.type === 'cooking' || p.type === 'dinner')) { hasFood = true; break; }
+    }
+    if (!hasFood) {
+      cookingValid = false; allValid = false;
+      for (let s = 0; s < slotsPerDay; s++) {
+        const slot = document.querySelector(`.t3-slot[data-day="${d}"][data-slot="${s}"]`);
+        if (slot) {
+          slot.classList.add('t3-error');
+          const msg = slot.querySelector('.t3-error-msg');
+          if (msg && !msg.textContent) msg.textContent = 'Без ужина вечер не идет по плану';
+        }
+      }
+    }
+  }
+
+  let bufferValid = true;
+  for (let d = 0; d < 5; d++) {
+    let occupied = 0;
+    for (let s = 0; s < slotsPerDay; s++) { if (t3_isSlotOccupied(d, s)) occupied++; }
+    if (occupied >= slotsPerDay) {
+      bufferValid = false; allValid = false;
+      for (let s = 0; s < slotsPerDay; s++) {
+        const slot = document.querySelector(`.t3-slot[data-day="${d}"][data-slot="${s}"]`);
+        if (slot) {
+          slot.classList.add('t3-error');
+          const msg = slot.querySelector('.t3-error-msg');
+          if (msg) msg.textContent = 'Нет буфера — любая срочная задача сломает день';
+        }
+      }
+    }
+  }
+
+  if (t3_attempts === 1) {
+    t3_firstTryRules.commute = commuteValid;
+    t3_firstTryRules.cooking = cookingValid;
+    t3_firstTryRules.buffer = bufferValid;
+  }
+
+  if (allValid) {
+    document.getElementById('t3-calendar-outer').classList.add('t3-calendar-success');
+    document.querySelectorAll('.t3-slot').forEach(s => s.classList.add('t3-success'));
+    setTimeout(() => t3_showFinalScreen(), 1200);
+  }
+}
+
+function t3_showFinalScreen() {
+  const passed = Object.values(t3_firstTryRules).filter(v => v).length;
+  document.getElementById('t3-final-score').innerHTML =
+    `Правил соблюдено с первого раза: <span>${passed} из 3</span>`;
+  t3_showScreen('t3-screen-final');
+}
+</script>
+
+</body>
+</html>
